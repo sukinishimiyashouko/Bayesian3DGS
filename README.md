@@ -74,8 +74,6 @@ Our work does not introduce additional parameters to the Gaussian ellipsoids, wh
 
 ## Citation
 
-This project is the official implementation of **Improving Densification in 3D Gaussian Splatting for High-Fidelity Rendering**. It is important to note that this paper is a resubmission of **Efficient Density Control for 3D Gaussian Splatting**, with significant changes in methodology and writing. The original version has been deprecated and is no longer maintained. The original EDC code repository is also no longer updated or accepting inquiries.
-
 
 
 ## Acknowledgments
