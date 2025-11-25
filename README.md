@@ -4,7 +4,7 @@
 
 ### Guilin University of Electronic Technology
 
-## [Project Page](GS from three perspectives: when to dhttps://github.com/sukinishimiyashouko/Bayesian3DGS)
+## [Project Page](https://github.com/sukinishimiyashouko/Bayesian3DGS)
 This work introduces Bayesian3DGS, a probabilistic extension that models each Gaussian’s evolution as a Bayesian variable with learnable survival probabilities. Guided by geometry- and color-based priors, rendering likelihoods, and KL-regularized variational inference, the framework enables adaptive and uncertainty-aware optimization. Entropy-driven survival dynamics support balanced densification and pruning, while feature-aware splitting refines geometric and photometric coherence. Extensive experiments demonstrate that Bayesian3DGS achieves reconstruction quality comparable to or surpassing state-of-the-art methods, effectively mitigating overfitting and improving robustness.The proposed formulation provides a theoretically grounded and extensible paradigm for probabilistic Gaussian optimization in 3D scene representation.
 
 ## Qualitative Result
