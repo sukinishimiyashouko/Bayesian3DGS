@@ -68,10 +68,6 @@ You can also run the code in the same way as 3DGS.
 
  `data_device` : Replacing  `data_device` with "cpu" can save GPU memory, especially in cases with a large number of viewpoints. Users with less than 12GB of GPU memory are recommended to use this option.
 
-## Scene Visualization
-
-Our work does not introduce additional parameters to the Gaussian ellipsoids, which means you can use any 3DGS viewer to visualize the trained scenes. We recommend [SuperSplat](https://superspl.at/editor) as a viewer.
-
 ## Citation
 
 
