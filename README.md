@@ -71,7 +71,6 @@ You can also run the code in the same way as 3DGS.
 ## Citation
 
 
-
 ## Acknowledgments
 
 This project is built upon the open-source code of [TamingGS](https://github.com/humansensinglab/taming-3dgs) and [Improved-GS](https://github.com/XiaoBin2001/Improved-GS). We sincerely thank the authors for their excellent work.
