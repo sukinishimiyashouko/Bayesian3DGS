@@ -348,6 +348,20 @@ class GaussianModel:
             l.append('scale_{}'.format(i))
         for i in range(self._rotation.shape[1]):
             l.append('rot_{}'.format(i))
+        return l
+
+    def construct_list_of_attributes_with_survival(self):
+        l = ['x', 'y', 'z', 'nx', 'ny', 'nz']
+        # All channels except the 3 DC
+        for i in range(self._features_dc.shape[1] * self._features_dc.shape[2]):
+            l.append('f_dc_{}'.format(i))
+        for i in range(self._features_rest.shape[1] * self._features_rest.shape[2]):
+            l.append('f_rest_{}'.format(i))
+        l.append('opacity')
+        for i in range(self._scaling.shape[1]):
+            l.append('scale_{}'.format(i))
+        for i in range(self._rotation.shape[1]):
+            l.append('rot_{}'.format(i))
         # Add survival logit for Bayesian framework
         l.append('survival_logit')
         return l
@@ -365,6 +379,31 @@ class GaussianModel:
 
         # 构建属性列表，根据_survival_logit是否存在决定是否包含
         dtype_full = [(attribute, 'f4') for attribute in self.construct_list_of_attributes()]
+
+        # 构建属性数组，只包含存在的属性
+        attributes_list = [xyz, normals, f_dc, f_rest, opacities, scale, rotation]
+
+        # 连接所有属性
+        attributes = np.concatenate(attributes_list, axis=1)
+
+        elements = np.empty(xyz.shape[0], dtype=dtype_full)
+        elements[:] = list(map(tuple, attributes))
+        el = PlyElement.describe(elements, 'vertex')
+        PlyData([el]).write(path)
+
+    def save_ply_with_survival(self, path):
+        mkdir_p(os.path.dirname(path))
+
+        xyz = self._xyz.detach().cpu().numpy()
+        normals = np.zeros_like(xyz)
+        f_dc = self._features_dc.detach().transpose(1, 2).flatten(start_dim=1).contiguous().cpu().numpy()
+        f_rest = self._features_rest.detach().transpose(1, 2).flatten(start_dim=1).contiguous().cpu().numpy()
+        opacities = self._opacity.detach().cpu().numpy()
+        scale = self._scaling.detach().cpu().numpy()
+        rotation = self._rotation.detach().cpu().numpy()
+
+        # 构建属性列表，根据_survival_logit是否存在决定是否包含
+        dtype_full = [(attribute, 'f4') for attribute in self.construct_list_of_attributes_with_survival()]
 
         # 构建属性数组，只包含存在的属性
         attributes_list = [xyz, normals, f_dc, f_rest, opacities, scale, rotation]
