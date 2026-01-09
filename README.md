@@ -1,28 +1,31 @@
 # Bayesian3DGS: Uncertainty-Aware and Adaptive 3D Gaussian Splatting
 
-### Qin Qin,Qing Wang
+### Qin Qin,Qing Wang,Huyuan Shen
 
 ### Guilin University of Electronic Technology
 
-## [Project Page](https://github.com/sukinishimiyashouko/Bayesian3DGS)
-This work introduces Bayesian3DGS, a probabilistic extension that models each Gaussian’s evolution as a Bayesian variable with learnable survival probabilities. Guided by geometry- and color-based priors, rendering likelihoods, and KL-regularized variational inference, the framework enables adaptive and uncertainty-aware optimization. Entropy-driven survival dynamics support balanced densification and pruning, while feature-aware splitting refines geometric and photometric coherence. Extensive experiments demonstrate that Bayesian3DGS achieves reconstruction quality comparable to or surpassing state-of-the-art methods, effectively mitigating overfitting and improving robustness.The proposed formulation provides a theoretically grounded and extensible paradigm for probabilistic Gaussian optimization in 3D scene representation.
-
+## [Code Page](https://github.com/sukinishimiyashouko/Bayesian3DGS)
+3D Gaussian Splatting (3DGS) has achieved remarkable success in novel view synthesis. However,
+its reliance on a deterministic, heuristic-driven densification strategy often leads to the creation
+of unsubstantiated ’floater’ artifacts, causing significant quality degradation and flickering when
+rendering from unseen or challenging viewpoints. To address this, we introduce Bayesian3DGS, a
+probabilistic framework that explicitly models epistemic uncertainty by treating the very existence
+of each Gaussian as a latent random variable. Quantified by a learnable survival probability, this
+uncertainty governs the entire Gaussian lifecycle—from feature-aware splitting to entropy-guided
+pruning—through principled Bayesian inference. Optimized via variational inference, our model dynamically replaces heuristic rules, robustly adapting its complexity to the scene’s underlying geometry.
+Extensive experiments on benchmarks like Mip-NeRF 360 demonstrate the tangible benefits of our
+approach. Bayesian3DGS not only matches or surpasses state-of-the-art PSNR but also significantly
+enhances training stability and reduces visual artifacts. This leads to a perceptually more coherent
+viewing experience while maintaining high computational efficiency compared to other probabilistic
+approaches.
 ## Qualitative Result
 
-![outdoor](assets/qualitative_outdoor.png)
-
-![indoor](assets/qualitative_indoor.png)
-
-![Tanks And Temples](assets/qualitative_TT.png)
-
-![Deep Blending](assets/qualitative_DB.png)
+![qualitative](assets/qualitative.png)
 
 ## Quantitative Result
 
 ![quantitative](assets/quantitative.png)
 
-## Overfitting Result
-![overfitting](assets/overfitting.png)
 ## Environment
 
 Before installing our project, you need to ensure that your local environment for compiling the 3DGS CUDA kernel is properly set up, such as having CUDA Toolkit and Visual Studio installed. We recommend that you first install and run the [original 3DGS repository](https://github.com/graphdeco-inria/gaussian-splatting), and then proceed to install our project upon successful setup.
